@@ -1,0 +1,122 @@
+# coda worker
+
+1. Öncelikle bu [video](https://www.youtube.com/watch?v=iSrtjxOsC6A&feature=youtu.be)'nun ilk 3 dakikasında anlatılan şekilde çalışma ortamını hazırlayın ve yeni bir ssh(ssh-1) penceresi açın
+2. Daha önce coda kurulduysa temizlemek için  
+`sudo apt-get remove coda-testnet-postake-medium-curves`  
+`sudo apt-get remove coda-kademlia`  
+3. Coda kurulumu için  
+`echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/coda.list`  
+`sudo apt-get update`  
+`sudo apt-get install -t release coda-testnet-postake-medium-curves`  
+4. Coda'yı ilk kez çalıştırıp eşlere bağlanmak için coda.service isimli scripti oluşturun  
+`cd /lib/systemd/system`  
+`sudo nano coda.service`  
+Aşağıdaki kodu script içine yapıştırdıktan sonra Ctrl+O ile kaydedin ve Ctrl+X ile dosyayı kapatın  
+```
+Description=coda-daemon  
+[Service]  
+Type=simple  
+Restart=always  
+RestartSec=5s  
+ExecStart=/usr/local/bin/coda daemon \  
+    -external-port 8302 \  
+    -discovery-port 8303 \  
+    -peer /dns4/seed-one.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWP7fTKbyiUcYJGajQDpCFo2rDexgTHFJTxCH8jvcL1eAH \  
+    -peer /dns4/seed-two.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWL9ywbiXNfMBqnUKHSB1Q1BaHFNUzppu6JLMVn9TTPFSA  
+[Install]  
+WantedBy=multi-user.target  
+```  
+5. Servisi başlatın  
+`sudo systemctl enable coda`  
+`sudo systemctl start coda`  
+6. Yeni bir ssh(ssh-2) penceresi açın ve aşağıdaki komut ile coda'yı takip edin  
+`tail -f /var/log/syslog`  
+7. ssh-1 içinde durumu kontrol edin  
+`coda client status`  
+8. Sync status: Synced durumuna gelmesini bekleyin
+9. Daha önce public key oluşturuldu ve private key yedeği alındı ise;
+  keys isimli bir dizin oluşturulur  
+`mkdir -m 700 keys`  
+`cd keys`  
+`sudo nano my-wallet` private keyi yapıştırıp kaydedin  
+`sudo nano my-wallet.pub` public keyi yapıştırıp kaydedin  
+10. İlk defa public key oluşturacak ise;  
+`sudo apt-get install coda-generate-keypair-phase3`  
+`coda-generate-keypair-phase3 -privkey-path keys/my-wallet`  
+`cat keys/my-wallet` private keyi saklayın  
+`cat keys/my-wallet.pub` public keyi saklayın  
+11. keys dizini içinde oluşturulan keyleri accounts içine tanımlayın
+`sudo passwd` root için şifre oluşturun ve onaylayın  
+`su` root hesabına geçin  
+`chmod -R 700 /home/{user}/keys` keys dizini için yetkiyi 700 olarak belirleyin (user yerine kullanıcınız)  
+`coda advance import -privkey-path /home/{user}/keys/my-wallet` private keyi import edin (user yerine kullanıcınız)  
+`coda accounts list` public keyi bu listede görüyor olmalısınız  
+`coda accounts unlock -public-key <KEY>` hesabın kilidini açın (KEY yerine public keyiniz)  
+12. Snark worker ve staker olarak devam etmek için phyton kurun ve coda_restart.py dosyasını oluşturun   
+`sudo apt-get install python`  
+`sudo apt-get install python-psutil`  
+`mkdir coda_python`  
+`sudo chmod +x coda_python`  
+`cd coda_python`  
+`sudo nano coda_restart.py`  
+Aşağıdaki kodu script içine yapıştırdıktan sonra Ctrl+O ile kaydedin ve Ctrl+X ile dosyayı kapatın (user yerine kullanıcınız, KEY yerine public keyiniz ve WALLET-PASSWORD yerine cüzdan şifrenizi yazın) 
+```
+#!/usr/bin/python
+
+import psutil
+import subprocess
+import os
+import time
+
+while True:
+        def checkIfProcessRunning(Coda):
+            '''
+            Check if there is any running process that contains the given name processName.
+            '''
+            #Iterate over the all the running process
+            for proc in psutil.process_iter():
+                try:
+                    # Check if process name contains the given name string.
+                    if Coda.lower() in proc.name().lower():
+                        return True
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    pass
+            return False;
+
+        if checkIfProcessRunning('coda'):
+                print('Coda is running')
+                time.sleep(5)
+        else:
+                os.system('export main_key=<KEY>')
+                print('coda is down attempting restart')
+                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -discovery-port 8303 -peer /dns4/seed-one.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWP7fTKbyiUcYJGajQDpCFo2rDexgTHFJTxCH8jvcL1eAH -peer /dns4/seed-two.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWL9ywbiXNfMBqnUKHSB1Q1BaHFNUzppu6JLMVn9TTPFSA -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
+                time.sleep(5)
+```
+13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun
+`cd`  
+`cd /lib/systemd/system`  
+`sudo nano coda_restart.service`  
+Aşağıdaki kodu script içine yapıştırdıktan sonra Ctrl+O ile kaydedin ve Ctrl+X ile dosyayı kapatın
+```
+[Unit]
+Description=Coda Restart Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/coinpigeon/coda_python/coda_restart.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
+```
+14. Snark worker ve staker olarak hazırlanan servisi çalıştırın 
+`cd`   
+`sudo systemctl enable coda_restart.service`  
+`sudo systemctl start coda_restart.service`  
+15. ssh-1 içinde durumu kontrol edin  
+`coda client status`  
+16. Sync status: Synced durumuna gelmesini bekleyin. 
+17. Coda bakiyenizi kontrol etmek için
+`coda client get-balance -public-key <KEY>`
