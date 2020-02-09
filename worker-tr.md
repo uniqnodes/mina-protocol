@@ -111,8 +111,9 @@ StandardInput=tty-force
 [Install]
 WantedBy=multi-user.target
 ```
-14. Snark worker ve staker olarak hazırlanan servisi çalıştırın 
-`cd`   
+14. Önce çalışmakta olan servisi durdurun. Ardından snark worker ve staker olarak hazırlanan servisi çalıştırın  
+`cd`  
+`sudo systemctl stop coda`  
 `sudo systemctl enable coda_restart.service`  
 `sudo systemctl start coda_restart.service`  
 15. ssh-1 içinde durumu kontrol edin  
