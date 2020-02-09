@@ -43,9 +43,8 @@ WantedBy=multi-user.target
 `sudo nano my-wallet.pub` public keyi yapıştırıp kaydedin  
 10. İlk defa public key oluşturacak ise;  
 `sudo apt-get install coda-generate-keypair-phase3`  
-`coda-generate-keypair-phase3 -privkey-path keys/my-wallet`  
+`coda-generate-keypair-phase3 -privkey-path keys/my-wallet` komut sonunda verilen public keyi saklayın  
 `cat keys/my-wallet` private keyi saklayın  
-`cat keys/my-wallet.pub` public keyi saklayın  
 11. keys dizini içinde oluşturulan keyleri accounts içine tanımlayın
 `sudo passwd` root için şifre oluşturun ve onaylayın  
 `su` root hesabına geçin  
