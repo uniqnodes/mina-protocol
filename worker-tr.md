@@ -45,7 +45,7 @@ WantedBy=multi-user.target
 `sudo apt-get install coda-generate-keypair-phase3`  
 `coda-generate-keypair-phase3 -privkey-path keys/my-wallet` komut sonunda verilen public keyi saklayın  
 `cat keys/my-wallet` private keyi saklayın  
-11. keys dizini içinde oluşturulan keyleri accounts içine tanımlayın
+11. keys dizini içinde oluşturulan keyleri accounts içine tanımlayın  
 `sudo passwd` root için şifre oluşturun ve onaylayın  
 `su` root hesabına geçin  
 `chmod -R 700 /home/{user}/keys` keys dizini için yetkiyi 700 olarak belirleyin (user yerine kullanıcınız)  
