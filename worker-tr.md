@@ -28,6 +28,7 @@ ExecStart=/usr/local/bin/coda daemon \
 WantedBy=multi-user.target
 ```  
 5. Servisi başlatın  
+`cd`  
 `sudo systemctl enable coda`  
 `sudo systemctl start coda`  
 6. Yeni bir ssh(ssh-2) penceresi açın ve aşağıdaki komut ile coda'yı takip edin  
