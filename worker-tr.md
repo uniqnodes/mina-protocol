@@ -121,7 +121,7 @@ WantedBy=multi-user.target
 15. ssh-1 içinde durumu kontrol edin  
 `coda client status`  
 16. Sync status: Synced durumuna gelmesini bekleyin. 
-17. Coda bakiyenizi kontrol etmek için
+17. Coda bakiyenizi kontrol etmek için  
 `coda client get-balance -public-key <KEY>`
 18. Coda göndermek için (KEY yerine public keyiniz ve RECEIVER-KEY yerine alıcı public keyini yazın)  
 `coda client send-payment -amount 1 -receiver <RECEIVER-KEY> -fee 1 -sender <KEY>`
