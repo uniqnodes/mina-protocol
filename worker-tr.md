@@ -96,7 +96,7 @@ while True:
 `cd`  
 `cd /lib/systemd/system`  
 `sudo nano coda_restart.service`  
-Aşağıdaki kodu script içine yapıştırdıktan sonra Ctrl+O ile kaydedin ve Ctrl+X ile dosyayı kapatın
+Aşağıdaki kodu script içine yapıştırdıktan sonra Ctrl+O ile kaydedin ve Ctrl+X ile dosyayı kapatın (user yerine kullanıcınız)
 ```
 [Unit]
 Description=Coda Restart Service
@@ -105,7 +105,7 @@ Conflicts=getty@tty1.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python /home/coinpigeon/coda_python/coda_restart.py
+ExecStart=/usr/bin/python /home/{user}/coda_python/coda_restart.py
 StandardInput=tty-force
 
 [Install]
