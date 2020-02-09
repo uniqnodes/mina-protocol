@@ -36,7 +36,7 @@ WantedBy=multi-user.target
 `coda client status`  
 8. Sync status: Synced durumuna gelmesini bekleyin
 9. Daha önce public key oluşturuldu ve private key yedeği alındı ise;
-  keys isimli bir dizin oluşturulur  
+  keys isimli bir dizin oluşturun  
 `mkdir -m 700 keys`  
 `cd keys`  
 `sudo nano my-wallet` private keyi yapıştırıp kaydedin  
