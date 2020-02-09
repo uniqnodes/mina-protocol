@@ -92,7 +92,7 @@ while True:
                 os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -discovery-port 8303 -peer /dns4/seed-one.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWP7fTKbyiUcYJGajQDpCFo2rDexgTHFJTxCH8jvcL1eAH -peer /dns4/seed-two.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWL9ywbiXNfMBqnUKHSB1Q1BaHFNUzppu6JLMVn9TTPFSA -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
                 time.sleep(5)
 ```
-13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun
+13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun  
 `cd`  
 `cd /lib/systemd/system`  
 `sudo nano coda_restart.service`  
