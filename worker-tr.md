@@ -49,6 +49,7 @@ WantedBy=multi-user.target
 11. keys dizini içinde oluşturulan keyleri accounts içine tanımlayın  
 `sudo passwd` root için şifre oluşturun ve onaylayın  
 `su` root hesabına geçin  
+`cd`  
 `chmod -R 700 /home/{user}/keys` keys dizini için yetkiyi 700 olarak belirleyin (user yerine kullanıcınız)  
 `coda advance import -privkey-path /home/{user}/keys/my-wallet` private keyi import edin (user yerine kullanıcınız)  
 `coda accounts list` public keyi bu listede görüyor olmalısınız  
