@@ -52,9 +52,7 @@ WantedBy=multi-user.target
 `coda advance import -privkey-path /home/{user}/keys/my-wallet` private keyi import edin (user yerine kullanıcınız)  
 `coda accounts list` public keyi bu listede görüyor olmalısınız  
 `coda accounts unlock -public-key <KEY>` hesabın kilidini açın (KEY yerine public keyiniz)  
-`su {user}` (user yerine kullanıcınız)  
-`cd`  
-12. Snark worker ve staker olarak devam etmek için phyton kurun ve coda_restart.py dosyasını oluşturun   
+12. ssh1'i kapatın ve yeni bir ssh penceresi açın. Snark worker ve staker olarak devam etmek için phyton kurun ve coda_restart.py dosyasını oluşturun   
 `sudo apt-get install python`  
 `sudo apt-get install python-psutil`  
 `mkdir coda_python`  
