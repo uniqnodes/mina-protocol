@@ -33,7 +33,7 @@ WantedBy=multi-user.target
 `sudo systemctl enable coda`  
 `sudo systemctl start coda`  
 6. Yeni bir ssh(ssh-2) penceresi açın ve aşağıdaki komut ile coda'yı takip edin  
-`tail -f /var/log/syslog`  
+`sudo tail -f /var/log/syslog`  
 7. ssh-1 içinde durumu kontrol edin  
 `coda client status`  
 8. Sync status: Synced durumuna gelmesini bekleyin
