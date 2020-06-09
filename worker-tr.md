@@ -91,7 +91,7 @@ while True:
         else:
                 os.system('export main_key=<KEY>')
                 print('coda is down attempting restart')
-                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -discovery-port 8303 -peer $SEED1 -peer $SEED2 -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
+                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -peer $SEED1 -peer $SEED2 -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
                 time.sleep(5)
 ```
 13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun  
