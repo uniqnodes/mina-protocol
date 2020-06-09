@@ -5,9 +5,10 @@
 `sudo apt-get remove coda-testnet-postake-medium-curves`  
 `sudo apt-get remove coda-kademlia`  
 3. Coda kurulumu için  
-`echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/coda.list`  
+`echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
 `sudo apt-get update`  
-`sudo apt-get install -t release coda-testnet-postake-medium-curves`  
+`sudo apt-get install -t unstable coda-testnet-postake-medium-curves=0.0.12-beta+406048-feature-bump-genesis-timestamp-3e9b174-PV48525e92`  
+`8302 ve 8303 portlarını açın`  
 4. Coda'yı ilk kez çalıştırıp eşlere bağlanmak için coda.service isimli scripti oluşturun  
 `cd /lib/systemd/system`  
 `sudo nano coda.service`  
@@ -22,8 +23,8 @@ RestartSec=5s
 ExecStart=/usr/local/bin/coda daemon \
     -external-port 8302 \
     -discovery-port 8303 \
-    -peer /dns4/seed-one.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWP7fTKbyiUcYJGajQDpCFo2rDexgTHFJTxCH8jvcL1eAH \
-    -peer /dns4/seed-two.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWL9ywbiXNfMBqnUKHSB1Q1BaHFNUzppu6JLMVn9TTPFSA
+    -peer $SEED1 \
+    -peer $SEED2
 [Install]
 WantedBy=multi-user.target
 ```  
@@ -91,7 +92,7 @@ while True:
         else:
                 os.system('export main_key=<KEY>')
                 print('coda is down attempting restart')
-                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -discovery-port 8303 -peer /dns4/seed-one.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWP7fTKbyiUcYJGajQDpCFo2rDexgTHFJTxCH8jvcL1eAH -peer /dns4/seed-two.genesis-redux.o1test.net/tcp/10002/ipfs/12D3KooWL9ywbiXNfMBqnUKHSB1Q1BaHFNUzppu6JLMVn9TTPFSA -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
+                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -discovery-port 8303 -peer $SEED1 -peer $SEED2 -run-snark-worker <KEY> -snark-worker-fee 1 -propose-key /home/{user}/keys/my-wallet')
                 time.sleep(5)
 ```
 13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun  
