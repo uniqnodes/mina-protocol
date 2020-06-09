@@ -8,7 +8,7 @@
 `echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
 `sudo apt-get update`  
 `sudo apt-get install -t unstable coda-testnet-postake-medium-curves=0.0.12-beta+406048-feature-bump-genesis-timestamp-3e9b174-PV48525e92`  
-`8302 ve 8303 portlarını açın`  
+`22, 8302 ve 8303 portlarını açın`  
 4. Coda'yı ilk kez çalıştırıp eşlere bağlanmak için coda.service isimli scripti oluşturun  
 `cd /lib/systemd/system`  
 `sudo nano coda.service`  
