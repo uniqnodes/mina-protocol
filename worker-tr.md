@@ -22,7 +22,6 @@ Restart=always
 RestartSec=5s
 ExecStart=/usr/local/bin/coda daemon \
     -external-port 8302 \
-    -discovery-port 8303 \
     -peer $SEED1 \
     -peer $SEED2
 [Install]
