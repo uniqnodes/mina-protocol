@@ -22,8 +22,7 @@ Restart=always
 RestartSec=5s
 ExecStart=/usr/local/bin/coda daemon \
     -external-port 8302 \
-    -peer /ip4/34.74.183.100/tcp/10001/ipfs/12D3KooWAFFq2yEQFFzhU5dt64AWqawRuomG9hL8rSmm5vxhAsgr \
-    -peer /ip4/35.231.128.243/tcp/10001/ipfs/12D3KooWB79AmjiywL1kMGeKHizFNQE9naThM2ooHgwFcUzt6Yt1
+    -peer /dns4/pickles.o1test.net/tcp/10001/p2p/12D3KooWAFFq2yEQFFzhU5dt64AWqawRuomG9hL8rSmm5vxhAsgr
 [Install]
 WantedBy=multi-user.target
 ```  
@@ -91,7 +90,7 @@ while True:
         else:
                 os.system('export main_key=<KEY>')
                 print('coda is down attempting restart')
-                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -peer /ip4/34.74.183.100/tcp/10001/ipfs/12D3KooWAFFq2yEQFFzhU5dt64AWqawRuomG9hL8rSmm5vxhAsgr -peer /ip4/35.231.128.243/tcp/10001/ipfs/12D3KooWB79AmjiywL1kMGeKHizFNQE9naThM2ooHgwFcUzt6Yt1 -run-snark-worker <KEY> -snark-worker-fee 1 -block-producer-key /home/{user}/keys/my-wallet')
+                os.system('CODA_PRIVKEY_PASS=<WALLET-PASSWORD> coda daemon -peer /dns4/pickles.o1test.net/tcp/10001/p2p/12D3KooWAFFq2yEQFFzhU5dt64AWqawRuomG9hL8rSmm5vxhAsgr -run-snark-worker <KEY> -snark-worker-fee 1 -block-producer-key /home/{user}/keys/my-wallet')
                 time.sleep(5)
 ```
 13. Ana dizine geçin ve coda_restart.py scriptini çalıştıracak coda_restart.service dosyasını oluşturun  
