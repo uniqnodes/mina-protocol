@@ -1,4 +1,8 @@
-# MINA WORKER  
+# Add User  
+`add user <USER-NAME>` (input password, name etc)  
+`visudo` (under `root ALL=(ALL:ALL) ALL` write `<USER-NAME> ALL=(ALL:ALL) ALL`, save and exit)  
+`su - <USER-NAME>`   
+# Mina Worker  
 `sudo apt update`  
 `wget -O ~/peers.txt <PEER-LIST-URL>`  
 `mkdir $HOME/.coda-config`  
@@ -10,7 +14,6 @@
 `cd ~ `  
 `chmod 700 ~/keys`  
 `sudo chmod 600 ~/keys/my-wallet`   
-# Install Docker and running daemon using Docker  
 `sudo apt-get install curl apt-transport-https ca-certificates software-properties-common`  
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`  
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`  
@@ -54,10 +57,10 @@ MINA_PUBLIC_KEY=<PUBLIC_KEY>
 `source .mina-env`  
 `coda accounts unlock -public-key $CODA_PUBLIC_KEY`  
 `coda accounts list` (if the balance is 0, go to discord #faucet channel and send `$request <PUBLIC_KEY>` and wait for the balance to increase)   
-# SET SNARK WORKER  
+# Set Snark Worker  
 `coda client set-snark-work-fee 0.1`  
 `coda client set-snark-worker -address $MINA_PUBLIC_KEY`   
-# SEND MINA  
+# Send Mina  
 ```
 coda client send-payment \
   -amount 1 \
