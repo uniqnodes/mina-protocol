@@ -1,4 +1,4 @@
-# coda worker  
+# CODA WORKER  
 `sudo apt update`
 `wget -O ~/peers.txt <PEER-LIST-URL>`  
 `mkdir $HOME/.coda-config`  
@@ -10,7 +10,7 @@
 `cd ~ `  
 `chmod 700 ~/keys`  
 `sudo chmod 600 ~/keys/my-wallet`   
-# INSTALL DOCKER  
+# Install Docker and running daemon using Docker  
 `sudo apt-get install curl apt-transport-https ca-certificates software-properties-common`  
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`  
 `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`  
@@ -18,7 +18,6 @@
 `apt-cache policy docker-ce`  
 `sudo apt install docker-ce`  
 `sudo chmod 666 /var/run/docker.sock`   
-# Running daemon using Docker  
 ```
 docker run --name mina -d \
 -p 8301-8305:8301-8305 \
@@ -55,7 +54,7 @@ MINA_PUBLIC_KEY=<PUBLIC_KEY>
 `source .mina-env`  
 `coda accounts unlock -public-key $CODA_PUBLIC_KEY`  
 `coda accounts list` (if the balance is 0, go to discord #faucet channel and send `$request <PUBLIC_KEY>` and wait for the balance to increase)   
-# SNARK WORKER  
+# SET SNARK WORKER  
 `coda client set-snark-work-fee 0.1`  
 `coda client set-snark-worker -address $MINA_PUBLIC_KEY`   
 # SEND MINA  
