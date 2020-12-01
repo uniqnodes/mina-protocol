@@ -1,5 +1,5 @@
 # CODA WORKER  
-`sudo apt update`
+`sudo apt update`  
 `wget -O ~/peers.txt <PEER-LIST-URL>`  
 `mkdir $HOME/.coda-config`  
 `export CODA_PRIVKEY_PASS=<PRIVATE_KEY_IMPORT_PASSWORD>`  
