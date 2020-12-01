@@ -1,4 +1,4 @@
-# CODA WORKER  
+# MINA WORKER  
 `sudo apt update`  
 `wget -O ~/peers.txt <PEER-LIST-URL>`  
 `mkdir $HOME/.coda-config`  
