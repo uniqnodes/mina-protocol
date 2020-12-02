@@ -9,7 +9,7 @@
    "root ALL=(ALL:ALL) ALL" bulunan satırın altına  
    `<KULLANICI ADINIZ> ALL=(ALL:ALL) ALL` satırı ekledikten sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
 3. Yeni kullanıcı ile yeni bir SSH penceresi açın  
-4. Sitemi güncelleyin  
+4. Sistemi güncelleyin  
    `sudo apt update`  
 5. Programa kabul edildiğinize dail gönderilen emaildeki "wget" ile başlayan komutu girin  
    `wget -O ~/peers.txt <PEER-LIST-URL>`  
