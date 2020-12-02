@@ -1,5 +1,5 @@
    NOT: <> parantezleri bulunan alanlara, parantez olmadan kendi bilgilerinizi yazın.  
-   Ör. MINA_PRIVKEY_PASS=<PRIVATE KEY OLUŞTURURKEN SEÇTİĞİNİZ ŞİFRE> ==> MINA_PRIVKEY_PASS=123456789   
+   Ör. MINA_PRIVKEY_PASS=<PRIVATE KEY OLUŞTURURKEN SEÇTİĞİNİZ ŞİFRE> ---> MINA_PRIVKEY_PASS=123456789   
 # Mina ağına bağlanma  
 1. Yeni kullanıcı ekleyin  
    (istenilen şifre ve diğer bilgileri girin)  
