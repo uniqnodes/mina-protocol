@@ -11,7 +11,7 @@
 3. Yeni kullanıcı ile yeni bir SSH penceresi açın  
 4. Sistemi güncelleyin  
    `sudo apt update`  
-5. Programa kabul edildiğinize dail gönderilen emaildeki "wget" ile başlayan komutu girin  
+5. Programa kabul edildiğinize dair gönderilen emaildeki "wget" ile başlayan komutu girin  
    `wget -O ~/peers.txt <PEER-LIST-URL>`  
 6. .coda-config isimli bir dizin oluşturun  
    `mkdir $HOME/.coda-config`  
