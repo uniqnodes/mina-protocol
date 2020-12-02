@@ -49,7 +49,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
-    -e CODA_PRIVKEY_PASS="$CODA_PRIVKEY_PASS" \
+    -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
     minaprotocol/mina-daemon-baked:4.1-turbo-pickles-mina4a053a4-auto8a44ae5 \
     daemon \
     -peer-list-file /root/peers.txt \
