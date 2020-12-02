@@ -3,7 +3,7 @@
 # Mina ağına bağlanma  
 1. Yeni kullanıcı ekleyin  
    (istenilen şifre ve diğer bilgileri girin)  
-   `add user <KULLANICI ADINIZ>`  
+   `sudo adduser <KULLANICI ADINIZ>`  
 2. Kullanıcıya root yetkisi verin  
    `visudo`  
    "root ALL=(ALL:ALL) ALL" bulunan satırın altına  
