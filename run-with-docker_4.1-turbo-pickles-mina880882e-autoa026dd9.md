@@ -50,7 +50,7 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:4.1-turbo-pickles-minae2db96a-autoccf3b82 \
+    minaprotocol/mina-daemon-baked:4.1-turbo-pickles-mina880882e-autoa026dd9 \
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
