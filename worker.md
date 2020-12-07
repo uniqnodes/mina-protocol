@@ -7,7 +7,7 @@
 2. Kullanıcıya root yetkisi verin  
    `visudo`  
    "root ALL=(ALL:ALL) ALL" bulunan satırın altına  
-   `<KULLANICI ADINIZ> ALL=(ALL:ALL) ALL` satırı ekledikten sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+   `<KULLANICI ADINIZ> ALL=(ALL:ALL) ALL` satırı ekledikten sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
 3. Yeni kullanıcı ile yeni bir SSH penceresi açın  
 4. Sistemi güncelleyin  
    `sudo apt update`  
@@ -24,10 +24,10 @@
    `sudo apt-get install nano`  
 10. my-wallet isimli bir dosya oluşturun  
     `sudo nano my-wallet`  
-11. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+11. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
 12. my-wallet.pub isimli bir dosya oluşturun  
     `sudo nano my-wallet.pub`  
-13. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+13. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
 14. Kök dizine dönün  
     `cd ~ `  
 15. keys dizini ve my-wallet dosyasını yetkilendirin  
@@ -69,10 +69,10 @@
     `cd keys`  
 22. my-wallet isimli bir dosya oluşturun  
     `nano my-wallet`  
-23. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+23. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
 24. my-wallet.pub isimli bir dosya oluşturun  
     `nano my-wallet.pub`  
-25. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+25. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
 26. Kök dizine dönün  
     `cd ~ `  
 27. keys dizini ve my-wallet dosyasını yetkilendirin  
@@ -82,7 +82,7 @@
     `coda accounts import -privkey-path ~/keys/my-wallet`  
 29. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
     `nano .mina-env`  
-30. public key değişkenini oluşturduktan sonra CTRL+O ile belgeyi kaydedin ve CTRL+X ile kapatın  
+30. public key değişkenini oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
     `MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
 31. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
     `source .mina-env`  
