@@ -104,3 +104,22 @@
   (Snark üretmeye başlamadan öncelikle blok bulma görevlerinin tamamlanması tavsiye ediliyor)  
   `coda client set-snark-work-fee 0.1`  
   `coda client set-snark-worker -address $MINA_PUBLIC_KEY`   
+# Docker Image güncelleme  
+1. Çalışan nodu durdurun  
+   `docker exec -it mina coda client stop-daemon`  
+2. Mina containeri durdurun  
+   `docker stop mina`  
+3. Mina containeri silin  
+   `docker container rm mina`  
+4. Docker imageleri listeleyin  
+   `docker images`  
+5. IMAGE ID ile Mina image silin  
+   `docker rmi <IMAGE-ID>`  
+6. .coda-config dosyasını silin  
+   `sudo rm -rf .coda-config`  
+7. peers.txt dosyasını silin  
+   `sudo rm -R peers.txt`  
+8. "Mina ağına bağlanma" başlığındaki;  
+   5. ve 6. adımları uygulayın,  
+   7 ile 16 arasını atlayın,  
+   17. işlemden itibaren yeni versiyon ile (4.1-turbo-pickles-XXX-XXX) uygulamaya devam edin.
