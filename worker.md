@@ -120,6 +120,6 @@
 7. peers.txt dosyasını silin  
    `sudo rm -R peers.txt`  
 8. "Mina ağına bağlanma" başlığındaki;  
-   5. ve 6. adımları uygulayın,  
-   7 ile 16 arasını atlayın,  
+   5, 6 ve 7. adımları uygulayın,  
+   8 ile 16 arasını atlayın,  
    17. işlemden itibaren yeni versiyon ile (4.1-turbo-pickles-XXX-XXX) uygulamaya devam edin.
