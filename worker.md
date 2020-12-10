@@ -122,4 +122,12 @@
 8. "Mina ağına bağlanma" başlığındaki;  
    5, 6 ve 7. adımları uygulayın,  
    8 ile 16 arasını atlayın,  
-   17. işlemden itibaren yeni versiyon ile (4.1-turbo-pickles-XXX-XXX) uygulamaya devam edin.
+   17. işlemden itibaren yeni versiyon ile (4.1-turbo-pickles-XXX-XXX) uygulamaya devam edin.   
+# Yeni Keypair oluşturma  
+1. Keypair oluşturma aracını indirin ve kurun  
+   `echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
+   `sudo apt-get update`  
+   `sudo apt-get install libjemalloc-dev`  
+   `sudo apt-get install mina-generate-keypair=0.0.16-beta7-20bce37`  
+2. Keypair oluşturun  
+   `mina-generate-keypair -privkey-path keys/my-wallet`
