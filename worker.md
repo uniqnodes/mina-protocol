@@ -50,12 +50,12 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:4.1-turbo-pickles-forked-mina56b97f1-autoeaa923f \
+    minaprotocol/mina-daemon-baked:0.2.0-efc44df-testworld-af5e10e \
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
     -insecure-rest-server \
-    -file-log-level Debug \
+    -file-log-level Info \
     -log-level Info
     ```  
 18. Oluşturulan mina container içine girin  
