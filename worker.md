@@ -12,7 +12,7 @@
 4. Sistemi güncelleyin  
    `sudo apt update`  
 5. Programa kabul edildiğinize dair gönderilen emaildeki "wget" ile başlayan komutu girin  
-   `wget -O ~/peers.txt <PEER-LIST-URL>`  
+   `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/coda-automation/bug-bounty-net/terraform/testnets/testworld/peers.txt`  
 6. .coda-config isimli bir dizin oluşturun  
    `mkdir $HOME/.coda-config`  
 7. Private key oluştururken seçtiğiniz şifreyi bir değişkene atayın  
