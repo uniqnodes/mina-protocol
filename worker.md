@@ -63,9 +63,8 @@
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
     ```
     docker run --name mina -d \
-    --restart always \
     -p 8301-8305:8301-8305 \
-    -p 127.0.0.1:3085:3085 \
+    --restart always \
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
@@ -73,7 +72,6 @@
     minaprotocol/mina-daemon-baked:0.2.0-efc44df-testworld-af5e10e \
     daemon \
     -peer-list-file /root/peers.txt \
-    -insecure-rest-server \
     -run-snark-worker "$MINA_PUBLIC_KEY" \
     -snark-worker-fee "0.1" \
     -file-log-level Info \
