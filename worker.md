@@ -15,7 +15,8 @@
    `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/coda-automation/bug-bounty-net/terraform/testnets/testworld/peers.txt`  
 6. .coda-config isimli bir dizin oluşturun  
    `mkdir $HOME/.coda-config`  
-7. Private key oluştururken seçtiğiniz şifreyi bir değişkene atayın  
+7. Public key ve private key oluştururken seçtiğiniz şifreyi değişkenlere atayın  
+   `export MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
    `export MINA_PRIVKEY_PASS=<PRIVATE KEY OLUŞTURURKEN SEÇTİĞİNİZ ŞİFRE>`  
 8. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
    `mkdir keys`  
@@ -41,7 +42,8 @@
     `apt-cache policy docker-ce`  
     `sudo apt install docker-ce`  
     `sudo chmod 666 /var/run/docker.sock` 
-17. mina docker image'i oluşturun (tüm satırları tek seferde yapıştırın)  
+17. Yapmak istediğiniz işleme göre bunlardan birini seçin (Block Producer ya da Snark Worker)  
+    a-) Block Producer docker image için (tüm satırları tek seferde yapıştırın)  
     ```
     docker run --name mina -d \
     -p 8301-8305:8301-8305 \
@@ -58,6 +60,26 @@
     -file-log-level Info \
     -log-level Info
     ```  
+    b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
+    ```
+    docker run --name mina -d \
+    --restart always \
+    -p 8301-8305:8301-8305 \
+    -p 127.0.0.1:3085:3085 \
+    --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
+    --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
+    --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
+    -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
+    minaprotocol/mina-daemon-baked:0.2.0-efc44df-testworld-af5e10e \
+    daemon \
+    -peer-list-file /root/peers.txt \
+    -insecure-rest-server \
+    -run-snark-worker "$MINA_PUBLIC_KEY" \
+    -snark-worker-fee "0.1" \
+    -file-log-level Info \
+    -log-level Info \
+    -work-selection seq
+    ```
 18. Oluşturulan mina container içine girin  
     `docker exec -it mina bash`  
 19. Networke bağlanma durumunuzu kontrol edin (sıradaki maddeden devam etmek için catchup ya da sync durumuna gelmesini bekleyin)  
@@ -100,8 +122,9 @@
     -fee 0.1 \
     -sender $MINA_PUBLIC_KEY
   ```   
+# Blok Producer çalıştırma  
+  `coda client set-staking -public-key $MINA_PUBLIC_KEY`   
 # Snark Worker çalıştırma  
-  (Snark üretmeye başlamadan öncelikle blok bulma görevlerinin tamamlanması tavsiye ediliyor)  
   `coda client set-snark-work-fee 0.1`  
   `coda client set-snark-worker -address $MINA_PUBLIC_KEY`   
 # Docker Image güncelleme  
