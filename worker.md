@@ -143,7 +143,7 @@
 8. "Mina ağına bağlanma" başlığındaki;  
    5, 6 ve 7. adımları uygulayın,  
    8 ile 16 arasını atlayın,  
-   17. işlemden itibaren yeni versiyon ile (4.1-turbo-pickles-XXX-XXX) uygulamaya devam edin.   
+   17. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
 # Yeni Keypair oluşturma  
 1. Keypair oluşturma aracını indirin ve kurun  
    `echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
