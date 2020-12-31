@@ -52,7 +52,7 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:0.2.0-efc44df-testworld-af5e10e \
+    minaprotocol/mina-daemon-baked:0.2.2-b7eff8e-testworld-6ca92d6 \
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
@@ -69,7 +69,7 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:0.2.0-efc44df-testworld-af5e10e \
+    minaprotocol/mina-daemon-baked:0.2.2-b7eff8e-testworld-6ca92d6 \
     daemon \
     -peer-list-file /root/peers.txt \
     -run-snark-worker "$MINA_PUBLIC_KEY" \
