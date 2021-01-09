@@ -52,13 +52,14 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:0.2.2-b7eff8e-testworld-6ca92d6 \
+    minaprotocol/mina-daemon-baked:0.2.2-1-b14e324-testworld-7bca682 \
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
     -insecure-rest-server \
     -file-log-level Info \
-    -log-level Info
+    -log-level Info \
+    -super-catchup
     ```  
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
     ```
@@ -69,13 +70,14 @@
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
-    minaprotocol/mina-daemon-baked:0.2.2-b7eff8e-testworld-6ca92d6 \
+    minaprotocol/mina-daemon-baked:0.2.2-1-b14e324-testworld-7bca682 \
     daemon \
     -peer-list-file /root/peers.txt \
     -run-snark-worker "$MINA_PUBLIC_KEY" \
     -snark-worker-fee "0.1" \
     -file-log-level Info \
     -log-level Info \
+    -super-catchup \
     -work-selection seq
     ```
 18. Oluşturulan mina container içine girin  
