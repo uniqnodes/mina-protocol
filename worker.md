@@ -17,7 +17,7 @@
    `mkdir $HOME/.coda-config`  
 7. Public key ve private key oluştururken seçtiğiniz şifreyi değişkenlere atayın  
    `export MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
-   `export MINA_PRIVKEY_PASS=<PRIVATE KEY OLUŞTURURKEN SEÇTİĞİNİZ ŞİFRE>`  
+   `export MINA_PRIVKEY_PASS=<KEYPAIR ŞİFRESİ>`  
 8. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
    `mkdir keys`  
    `cd keys`  
