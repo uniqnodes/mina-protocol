@@ -56,7 +56,6 @@
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
-    -insecure-rest-server \
     -file-log-level Info \
     -log-level Info \
     -super-catchup
