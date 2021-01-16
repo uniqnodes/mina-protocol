@@ -1,1 +1,1 @@
-<ins>[Node kurulum rehberi](https://github.com/erknfe/mina-protocol)<ins>
+&#8594; <ins>[Node kurulum rehberi](https://github.com/erknfe/mina-protocol)<ins>
