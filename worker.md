@@ -6,30 +6,23 @@
    `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/coda-automation/bug-bounty-net/terraform/testnets/testworld/peers.txt`  
 3. .coda-config isimli bir dizin oluşturun  
    `mkdir $HOME/.coda-config`  
-4. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
-   `sudo nano .mina-env`  
-5. public key ve private key şifresi için değişken oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
-   `MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
-   `MINA_PRIVKEY_PASS=<KEYPAIR ŞİFRESİ>`  
-6. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
-   `source .mina-env`  
-7. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
+4. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
     `mkdir keys`  
     `cd keys`  
-8. nano metin düzenleyici programını indirin  
+5. nano metin düzenleyici programını indirin  
    `sudo apt-get install nano`  
-9. my-wallet isimli bir dosya oluşturun  
+6. my-wallet isimli bir dosya oluşturun  
     `sudo nano my-wallet`  
-10. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
-11. my-wallet.pub isimli bir dosya oluşturun  
+7. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+8. my-wallet.pub isimli bir dosya oluşturun  
     `sudo nano my-wallet.pub`  
-12. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
-13. Kök dizine dönün  
+9. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+10. Kök dizine dönün  
     `cd ~ `  
-14. keys dizini ve my-wallet dosyasını yetkilendirin  
+11. keys dizini ve my-wallet dosyasını yetkilendirin  
     `sudo chmod 700 ~/keys`  
     `sudo chmod 600 ~/keys/my-wallet`  
-15. Docker kurun ve yetkilendirin  
+12. Docker kurun ve yetkilendirin  
     `sudo apt-get install curl apt-transport-https ca-certificates software-properties-common`  
     `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`  
     `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`  
@@ -37,7 +30,7 @@
     `apt-cache policy docker-ce`  
     `sudo apt install docker-ce`  
     `sudo chmod 666 /var/run/docker.sock` 
-16. Yapmak istediğiniz işleme göre bunlardan birini seçin (Block Producer ya da Snark Worker)  
+13. Yapmak istediğiniz işleme göre bunlardan birini seçin (Block Producer ya da Snark Worker)  
     a-) Block Producer docker image için (tüm satırları tek seferde yapıştırın)  
     ```
     docker run --name mina -d \
@@ -46,7 +39,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
-    -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
+    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
     gcr.io/o1labs-192920/coda-daemon-baked:0.2.6-5c08d6d-5c08d6d-testworld-2258826 \
     daemon \
     -peer-list-file /root/peers.txt \
@@ -63,50 +56,50 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
-    -e CODA_PRIVKEY_PASS="$MINA_PRIVKEY_PASS" \
+    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
     gcr.io/o1labs-192920/coda-daemon-baked:0.2.6-5c08d6d-5c08d6d-testworld-2258826 \
     daemon \
     -peer-list-file /root/peers.txt \
-    -run-snark-worker "$MINA_PUBLIC_KEY" \
+    -run-snark-worker "<PUBLIC_KEY>" \
     -snark-worker-fee "0.1" \
     -file-log-level Info \
     -log-level Info \
     -super-catchup \
     -work-selection seq
     ```
-17. Oluşturulan mina container içine girin  
+14. Oluşturulan mina container içine girin  
     `docker exec -it mina bash`  
-18. Networke bağlanma durumunuzu kontrol edin (sıradaki maddeden devam etmek için catchup ya da sync durumuna gelmesini bekleyin)  
+15. Networke bağlanma durumunuzu kontrol edin (sıradaki maddeden devam etmek için catchup ya da sync durumuna gelmesini bekleyin)  
     `coda client status`  
-19. nano metin düzenleyici programını bu container içine de indirin  
+16. nano metin düzenleyici programını bu container içine de indirin  
     `apt-get install nano`  
-20. Private ve public key dosyalarını bu container içinde de oluşturmak için keys isimli bir dizin oluşturun ve içine girin   
+17. Private ve public key dosyalarını bu container içinde de oluşturmak için keys isimli bir dizin oluşturun ve içine girin   
     `mkdir keys`  
     `cd keys`  
-21. my-wallet isimli bir dosya oluşturun  
+18. my-wallet isimli bir dosya oluşturun  
     `nano my-wallet`  
-22. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
-23. my-wallet.pub isimli bir dosya oluşturun  
+19. {"box_primitive": ile başlayan özel anahtarı bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+20. my-wallet.pub isimli bir dosya oluşturun  
     `nano my-wallet.pub`  
-24. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
-25. Kök dizine dönün  
+21. public keyi bu dosyanın içine yapıştırdıktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+22. Kök dizine dönün  
     `cd ~ `  
-26. keys dizini ve my-wallet dosyasını yetkilendirin  
+23. keys dizini ve my-wallet dosyasını yetkilendirin  
     `chmod 700 ~/keys`  
     `chmod 600 ~/keys/my-wallet`  
-27. Oluşturulan anahtar çiftini coda accounts içine import edin  
+24. Oluşturulan anahtar çiftini coda accounts içine import edin  
     `coda accounts import -privkey-path ~/keys/my-wallet`  
-28. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
+25. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
     `nano .mina-env`  
-29. public key değişkenini oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+26. public key değişkenini oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
     `MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
-30. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
+27. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
     `source .mina-env`  
-31. Import edilen hesap üzerinde işlem yapabilmek için hesabın kilidini açın  
+28. Import edilen hesap üzerinde işlem yapabilmek için hesabın kilidini açın  
     `coda accounts unlock -public-key $MINA_PUBLIC_KEY`  
-32. Hesabınızın bakiyesini kontrol edin  
+29. Hesabınızın bakiyesini kontrol edin  
     `coda accounts list`  
-33. Bakiye 0 ise discord #faucet kanalına `$request <PUBLIC_KEY>` komutunu girerek hesabınıza bakiye isteyin   
+30. Bakiye 0 ise discord #faucet kanalına `$request <PUBLIC_KEY>` komutunu girerek hesabınıza bakiye isteyin   
 # Mina gönderme  
   (Burada receiver alanındaki adres 1. görev için gereken echo service'e ait adres. Farklı gönderimlerde alıcı adresini buraya yazın.)
   ```
@@ -137,9 +130,9 @@
 7. peers.txt dosyasını silin  
    `sudo rm -R peers.txt`  
 8. "Mina ağına bağlanma" başlığındaki;  
-   2, 3 ve 6. adımları uygulayın,  
-   4, 5 ile 7-15 arasını atlayın,  
-   16. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
+   2 ve 3. adımları uygulayın,  
+   4-12 arasını atlayın,  
+   13. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
 # Yeni Keypair oluşturma  
 1. Keypair oluşturma paketini indirin  
    `sudo apt-get install mina-generate-keypair`  
