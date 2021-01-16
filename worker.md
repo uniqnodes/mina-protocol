@@ -146,9 +146,9 @@
 7. peers.txt dosyasını silin  
    `sudo rm -R peers.txt`  
 8. "Mina ağına bağlanma" başlığındaki;  
-   5, 6 ve 7. adımları uygulayın,  
-   8 ile 16 arasını atlayın,  
-   17. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
+   5, 6 ve 9. adımları uygulayın,  
+   7, 8 ile 10-18 arasını atlayın,  
+   19. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
 # Yeni Keypair oluşturma  
 1. Keypair oluşturma aracını indirin ve kurun  
    `echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
