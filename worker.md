@@ -141,13 +141,10 @@
    4, 5 ile 7-15 arasını atlayın,  
    16. işlemden itibaren yeni versiyon ile uygulamaya devam edin.   
 # Yeni Keypair oluşturma  
-1. Keypair oluşturma aracını indirin ve kurun  
-   `echo "deb [trusted=yes] http://packages.o1test.net unstable main" | sudo tee /etc/apt/sources.list.d/coda.list`  
-   `sudo apt-get update`  
-   `sudo apt-get install libjemalloc-dev`  
-   `sudo apt-get install mina-generate-keypair=0.0.16-beta7-20bce37`  
+1. Keypair oluşturma paketini indirin  
+   `sudo apt-get install mina-generate-keypair`  
 2. Keypair oluşturun  
-   `mina-generate-keypair -privkey-path keys/my-wallet`  
-3. Dizini ve my-wallet dosyasını yetkilendirin  
-   `sudo chmod 700 ~/keys`  
-   `sudo chmod 600 ~/keys/my-wallet`
+   `mkdir ~/keys`  
+   `chmod 700 ~/keys`  
+   `mina-generate-keypair -privkey-path ~/keys/my-wallet`  
+   `chmod 600 ~/keys/my-wallet`  
