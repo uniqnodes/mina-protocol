@@ -17,7 +17,7 @@
    `mkdir $HOME/.coda-config`  
 7. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
    `nano .mina-env`  
-8. public key ve private key oluştururken seçtiğiniz şifre için değişken oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
+8. public key ve private key şifresi için değişken oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
    `MINA_PUBLIC_KEY=<PUBLIC_KEY>`  
    `MINA_PRIVKEY_PASS=<KEYPAIR ŞİFRESİ>`  
 9. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
