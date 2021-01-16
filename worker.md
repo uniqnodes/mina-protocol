@@ -1,4 +1,4 @@
-# Mina ağına bağlanma  
+# Mina ağına "Block Producer" ya da "Snake Worker" olarak bağlanma  
 (Bu kurulum bir user üzerinde yapılabilir. Başlamak için önce user oluşturun.)
 1. Paketleri güncelleyin  
    `sudo apt update`  
