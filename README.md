@@ -99,7 +99,6 @@
     `coda accounts unlock -public-key $MINA_PUBLIC_KEY`  
 29. Hesabınızın bakiyesini kontrol edin  
     `coda accounts list`  
-30. Bakiye 0 ise discord #faucet kanalına `$request <PUBLIC_KEY>` komutunu girerek hesabınıza bakiye isteyin   
 # Mina gönderme  
   (Burada receiver alanındaki adres 1. görev için gereken echo service'e ait adres. Farklı gönderimlerde alıcı adresini buraya yazın.)
   ```
