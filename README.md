@@ -1,4 +1,5 @@
-# Mina ağına "Block Producer" ya da "Snake Worker" olarak bağlanma  
+# Mina ağına "Block Producer" ya da "Snark Worker" olarak bağlanma  
+# Docker  
 (Bu kurulum bir user üzerinde yapılabilir. Başlamak için önce user oluşturun.)
 1. Paketleri güncelleyin  
    `sudo apt update`  
