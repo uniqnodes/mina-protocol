@@ -3,7 +3,7 @@
 1. Paketleri güncelleyin  
    `sudo apt update`  
 2. Peer listesini indirin  
-   `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/coda-automation/bug-bounty-net/terraform/testnets/testworld/peers.txt`  
+   `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/mina/encore-peers/automation/terraform/testnets/encore/peers.txt`  
 3. .coda-config isimli bir dizin oluşturun  
    `mkdir $HOME/.coda-config`  
 4. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
@@ -34,13 +34,13 @@
     a-) Block Producer docker image için (tüm satırları tek seferde yapıştırın)  
     ```
     docker run --name mina -d \
-    -p 8301-8305:8301-8305 \
+    -p 8302:8302 \
     --restart=always \
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:0.2.11-d075f83-testworld-d075f83 \
+    minaprotocol/mina-daemon-baked:0.3.3-3ef8663-encore-3b5824a \
     daemon \
     -peer-list-file /root/peers.txt \
     -block-producer-key /keys/my-wallet \
@@ -51,13 +51,13 @@
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
     ```
     docker run --name mina -d \
-    -p 8301-8305:8301-8305 \
+    -p 8302:8302 \
     --restart always \
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
     --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:0.2.11-d075f83-testworld-d075f83 \
+    minaprotocol/mina-daemon-baked:0.3.3-3ef8663-encore-3b5824a \
     daemon \
     -peer-list-file /root/peers.txt \
     -run-snark-worker "<PUBLIC_KEY>" \
