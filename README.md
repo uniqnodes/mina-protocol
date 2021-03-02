@@ -151,8 +151,8 @@
 `sudo apt-get update`  
 `sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.0-fd39808`  
 `sudo nano peers.txt`  
-copy `https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt` content to `peers.txt`  
-`mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
+copy `https://storage.googleapis.com/seed-lists/finalfinal3_seeds.txt` content to `peers.txt`  
+`mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal3_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
   `CODA_PRIVKEY_PASS="private key password"`  
