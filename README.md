@@ -144,7 +144,7 @@
    
 # Daemon  
 `systemctl --user stop mina`  
-`sudo rm -R .coda-config`  
+`sudo rm -R .mina-config`  
 `sudo rm -R peers.txt`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
