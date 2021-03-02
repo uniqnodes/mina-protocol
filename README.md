@@ -145,10 +145,12 @@
 # Daemon  
 `systemctl --user stop mina`  
 `sudo rm -R .coda-config`  
+`sudo rm -R peers.txt`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
 `sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.0-fd39808`  
+`sudo nano peers.txt`  
 copy `https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt` content to `peers.txt`  
 `mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
 after bootstrap `Ctrl-C`  
