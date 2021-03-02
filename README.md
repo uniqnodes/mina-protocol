@@ -158,8 +158,8 @@ after bootstrap `Ctrl-C`
   `CODA_PRIVKEY_PASS="private key password"`  
   `EXTRA_FLAGS=" --file-log-level Debug --coinbase-receiver <PUBLIC-KEY>"`  
 `source .mina-env`  
-`systemctl --user start mina`  
 `systemctl --user enable mina`  
+`systemctl --user start mina`  
 `systemctl --user status mina`  
 `journalctl --user-unit mina -f`  
 `mina client status`  
