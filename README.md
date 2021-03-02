@@ -148,9 +148,9 @@
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=0.4.2-245a3f7`  
-copy `https://storage.googleapis.com/seed-lists/zenith_seeds.txt` content to `peers.txt`  
-`coda daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/zenith_seeds.txt`  
+`sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.0-fd39808`  
+copy `https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt` content to `peers.txt`  
+`mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
   `CODA_PRIVKEY_PASS="private key password"`  
@@ -160,7 +160,7 @@ after bootstrap `Ctrl-C`
 `systemctl --user enable mina`  
 `systemctl --user status mina`  
 `journalctl --user-unit mina -f`  
-`coda client status`  
+`mina client status`  
 
 # Daemon restart
 `systemctl --user restart mina`  
