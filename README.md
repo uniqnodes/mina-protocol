@@ -4,9 +4,9 @@
 1. Paketleri güncelleyin  
    `sudo apt update`  
 2. Peer listesini indirin  
-   `wget -O ~/peers.txt https://raw.githubusercontent.com/MinaProtocol/mina/encore-peers/automation/terraform/testnets/encore/peers.txt`  
-3. .coda-config isimli bir dizin oluşturun  
-   `mkdir $HOME/.coda-config`  
+   `wget -O ~/peers.txt https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
+3. .mina-config isimli bir dizin oluşturun  
+   `mkdir $HOME/.mina-config`  
 4. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
     `mkdir keys`  
     `cd keys`  
@@ -38,16 +38,15 @@
     -p 8302:8302 \
     --restart=always \
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
-    --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
-    --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
+    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:0.3.3-3ef8663-encore-3b5824a \
+    minaprotocol/mina-daemon-baked:1.0.0-fd39808 \
     daemon \
-    -peer-list-file /root/peers.txt \
-    -block-producer-key /keys/my-wallet \
-    -file-log-level Info \
-    -log-level Info \
-    -super-catchup
+    --block-producer-key /keys/my-wallet \
+    --insecure-rest-server \
+    --file-log-level Debug \
+    --log-level Info \
+    --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt
     ```  
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
     ```
@@ -55,23 +54,22 @@
     -p 8302:8302 \
     --restart always \
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
-    --mount "type=bind,source=`pwd`/.coda-config,dst=/root/.coda-config" \
-    --mount type=bind,source="`pwd`/peers.txt,dst=/root/peers.txt",readonly \
+    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:0.3.3-3ef8663-encore-3b5824a \
+    minaprotocol/mina-daemon-baked:1.0.0-fd39808 \
     daemon \
-    -peer-list-file /root/peers.txt \
-    -run-snark-worker "<PUBLIC_KEY>" \
-    -snark-worker-fee "0.1" \
-    -file-log-level Info \
-    -log-level Info \
-    -super-catchup \
-    -work-selection seq
+    --run-snark-worker "<PUBLIC_KEY>" \
+    --snark-worker-fee "0.1" \
+    --insecure-rest-server \
+    --file-log-level Debug \
+    --log-level Info \
+    --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt \
+    --work-selection seq
     ```
 14. Oluşturulan mina container içine girin  
     `docker exec -it mina bash`  
 15. Networke bağlanma durumunuzu kontrol edin (sıradaki maddeden devam etmek için catchup ya da sync durumuna gelmesini bekleyin)  
-    `coda client status`  
+    `mina client status`  
 16. nano metin düzenleyici programını bu container içine de indirin  
     `apt-get install nano`  
 17. Private ve public key dosyalarını bu container içinde de oluşturmak için keys isimli bir dizin oluşturun ve içine girin   
@@ -89,7 +87,7 @@
     `chmod 700 ~/keys`  
     `chmod 600 ~/keys/my-wallet`  
 24. Oluşturulan anahtar çiftini coda accounts içine import edin  
-    `coda accounts import -privkey-path ~/keys/my-wallet`  
+    `mina accounts import -privkey-path ~/keys/my-wallet`  
 25. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
     `nano .mina-env`  
 26. public key değişkenini oluşturduktan sonra CTRL+O ve Enter ile belgeyi kaydedin ve CTRL+X ile kapatın  
@@ -97,26 +95,26 @@
 27. Bu değişkenleri kullanabilmek için .mina-env dosyasını kaynak olarak belirleyin  
     `source .mina-env`  
 28. Import edilen hesap üzerinde işlem yapabilmek için hesabın kilidini açın  
-    `coda accounts unlock -public-key $MINA_PUBLIC_KEY`  
+    `mina accounts unlock -public-key $MINA_PUBLIC_KEY`  
 29. Hesabınızın bakiyesini kontrol edin  
-    `coda accounts list`  
+    `mina accounts list`  
 # Mina gönderme  
   (Burada receiver alanındaki adres 1. görev için gereken echo service'e ait adres. Farklı gönderimlerde alıcı adresini buraya yazın.)
   ```
-  coda client send-payment \
+  mina client send-payment \
     -amount 1 \
     -receiver B62qndJi5mnRoBZ8SAYDM1oR2SgAk5WpZC8hGpJUZ4e64kDHGbFMeLJ \
     -fee 0.1 \
     -sender $MINA_PUBLIC_KEY
   ```   
 # Blok Producer çalıştırma  
-  `coda client set-staking -public-key $MINA_PUBLIC_KEY`   
+  `mina client set-staking -public-key $MINA_PUBLIC_KEY`   
 # Snark Worker çalıştırma  
-  `coda client set-snark-work-fee 0.1`  
-  `coda client set-snark-worker -address $MINA_PUBLIC_KEY`   
+  `mina client set-snark-work-fee 0.1`  
+  `mina client set-snark-worker -address $MINA_PUBLIC_KEY`   
 # Docker Image güncelleme  
 1. Çalışan nodu durdurun  
-   `docker exec -it mina coda client stop-daemon`  
+   `docker exec -it mina mina client stop-daemon`  
 2. Mina containeri durdurun  
    `docker stop mina`  
 3. Mina containeri silin  
@@ -126,7 +124,7 @@
 5. IMAGE ID ile Mina image silin  
    `docker rmi <IMAGE-ID>`  
 6. .coda-config dosyasını silin  
-   `sudo rm -rf .coda-config`  
+   `sudo rm -rf .mina-config`  
 7. peers.txt dosyasını silin  
    `sudo rm -R peers.txt`  
 8. "Mina ağına bağlanma" başlığındaki;  
@@ -150,8 +148,7 @@
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
 `sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.0-fd39808`  
-`sudo nano peers.txt`  
-copy `https://storage.googleapis.com/seed-lists/finalfinal3_seeds.txt` content to `peers.txt`  
+`wget -O ~/peers.txt https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
 `mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal3_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
