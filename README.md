@@ -161,7 +161,7 @@ after bootstrap `Ctrl-C`
 `journalctl --user-unit mina -f`  
 `mina client status`  
 
-# Daemon update  
+# Daemon update (config ve peerları silmeden)  
 `systemctl --user stop mina`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
