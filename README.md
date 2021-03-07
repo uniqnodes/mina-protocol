@@ -161,5 +161,17 @@ after bootstrap `Ctrl-C`
 `journalctl --user-unit mina -f`  
 `mina client status`  
 
+# Daemon update  
+`systemctl --user stop mina`  
+`sudo apt-get remove -y mina-testnet-postake-medium-curves`  
+`echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
+`sudo apt-get update`  
+`sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.2-06f3c5c`  
+`source .mina-env`  
+`systemctl --user reload mina`  
+`systemctl --user status mina`  
+`journalctl --user-unit mina -f`  
+`mina client status`  
+
 # Daemon restart
 `systemctl --user restart mina`  
