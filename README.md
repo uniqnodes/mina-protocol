@@ -4,7 +4,7 @@
 1. Paketleri güncelleyin  
    `sudo apt update`  
 2. Peer listesini indirin  
-   `wget -O ~/peers.txt https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
+   `wget -O ~/peers.txt https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 3. .mina-config isimli bir dizin oluşturun  
    `mkdir $HOME/.mina-config`  
 4. Private ve public key dosyalarını oluşturmak için keys isimli bir dizin oluşturun ve içine girin  
@@ -40,13 +40,13 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:1.0.2-06f3c5c \
+    minaprotocol/mina-daemon-baked:1.1.3-48401e9 \
     daemon \
     --block-producer-key /keys/my-wallet \
     --insecure-rest-server \
     --file-log-level Debug \
     --log-level Info \
-    --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt
+    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
     ```  
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
     ```
@@ -56,14 +56,14 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:1.0.2-06f3c5c \
+    minaprotocol/mina-daemon-baked:1.1.3-48401e9 \
     daemon \
     --run-snark-worker "<PUBLIC_KEY>" \
     --snark-worker-fee "0.1" \
     --insecure-rest-server \
     --file-log-level Debug \
     --log-level Info \
-    --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt \
+    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt \
     --work-selection seq
     ```
 14. Oluşturulan mina container içine girin  
@@ -147,9 +147,9 @@
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.2-06f3c5c`  
-`wget -O ~/peers.txt https://storage.googleapis.com/seed-lists/finalfinal2_seeds.txt`  
-`mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/seed-lists/finalfinal3_seeds.txt`  
+`sudo apt-get install -y curl unzip mina-mainnet=1.1.3-48401e9`  
+`wget -O ~/peers.txt https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
+`mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
   `CODA_PRIVKEY_PASS="private key password"`  
@@ -166,7 +166,7 @@ after bootstrap `Ctrl-C`
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y curl unzip mina-testnet-postake-medium-curves=1.0.2-06f3c5c`  
+`sudo apt-get install -y curl unzip mina-mainnet=1.1.3-48401e9`  
 `source .mina-env`  
 `systemctl --user reload mina`  
 `systemctl --user status mina`  
