@@ -1,6 +1,5 @@
-# Update
+# Update  
 
-'sidecar' update;
 1 `sudo apt-get install -y mina-bp-stats-sidecar=1.1.5-a42bdee`  
 2 `apt-get update && apt-get install python3 python3-certifi`  
 3 `sudo nano /etc/mina-sidecar.json`  
