@@ -5,7 +5,7 @@ B62qpZTtpZL7QobzPX97h1f2CNFchXoXc4NJUZL1xdvNqTdwR5NCbkZ
 ```
 <br/><br/>
 
-* Delegating fee %15
+* Delegating fee %5
 * You can un-delegate at any time without penalty
 * All conditions related to staking service will be announced before mainnet
 * The frequency and method of payment will be explained later
