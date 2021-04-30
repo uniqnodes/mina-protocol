@@ -22,5 +22,6 @@ EXTRA_FLAGS=" --file-log-level Debug --limited-graphql-port 3095"
 ```  
 6 `sudo systemctl enable mina-bp-stats-sidecar`  
 7 `sudo service mina-bp-stats-sidecar start`  
+7 `sudo service mina-bp-stats-sidecar restart`  
 8 `sudo service mina-bp-stats-sidecar status`  
 9 `journalctl -f -u mina-bp-stats-sidecar.service`
