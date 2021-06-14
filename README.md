@@ -43,7 +43,6 @@
     minaprotocol/mina-daemon-baked:1.1.5-a42bdee \
     daemon \
     --block-producer-key /keys/my-wallet \
-    --insecure-rest-server \
     --file-log-level Debug \
     --log-level Info \
     --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
@@ -60,7 +59,6 @@
     daemon \
     --run-snark-worker "<PUBLIC_KEY>" \
     --snark-worker-fee "0.1" \
-    --insecure-rest-server \
     --file-log-level Debug \
     --log-level Info \
     --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt \
