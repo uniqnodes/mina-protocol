@@ -150,8 +150,16 @@
 `mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
-  `CODA_PRIVKEY_PASS="private key password"`  
-  `EXTRA_FLAGS=" --file-log-level Debug --coinbase-receiver <PUBLIC-KEY>"`  
+  ```
+  CODA_PRIVKEY_PASS="private key password"  
+  EXTRA_FLAGS=" --file-log-level Debug \  
+   --coinbase-receiver <PUBLIC-KEY> \ (rewardların toplanacağı adres)  
+   --limited-graphql-port 3095 \ (sidecar çalıştırıyorsanız gerekli)  
+   (bp ile birlikte snark da çalışacak ise aşağıdaki 3 parametre eklenmeli)  
+   --run-snark-worker <PUBLIC-KEY> \ (snark ödüllerinin toplanacağı adres)  
+   --snark-worker-fee 0.0009 \ (snark fee)  
+   --work-selection seq" (snark aktif)  
+   ```  
 `source .mina-env`  
 `systemctl --user enable mina`  
 `systemctl --user start mina`  
