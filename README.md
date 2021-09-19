@@ -175,6 +175,7 @@ after bootstrap `Ctrl-C`
 `sudo apt-get install -y curl unzip mina-mainnet=1.1.7-d5ff5aa`  
 `source .mina-env`  
 `systemctl --user reload mina`  
+`systemctl --user restart mina`  
 `systemctl --user status mina`  
 `journalctl --user-unit mina -f`  
 `mina client status`  
