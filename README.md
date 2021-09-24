@@ -40,7 +40,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
+    gcr.io/o1labs-192920/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
     daemon \
     --block-producer-key /keys/my-wallet \
     --file-log-level Debug \
@@ -55,7 +55,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    minaprotocol/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
+    gcr.io/o1labs-192920/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
     daemon \
     --run-snark-worker "<PUBLIC_KEY>" \
     --snark-worker-fee "0.1" \
