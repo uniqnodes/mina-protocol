@@ -34,34 +34,30 @@
 13. Yapmak istediğiniz işleme göre bunlardan birini seçin (Block Producer ya da Snark Worker)  
     a-) Block Producer docker image için (tüm satırları tek seferde yapıştırın)  
     ```
-    docker run --name mina -d \
-    -p 8302:8302 \
-    --restart=always \
-    --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
-    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
-    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    gcr.io/o1labs-192920/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
-    daemon \
-    --block-producer-key /keys/my-wallet \
-    --file-log-level Debug \
-    --log-level Info \
-    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt
+    docker run --name mina -d \  
+    -p 8302:8302 \  
+    --restart=always \  
+    --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \  
+    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \  
+    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \  
+    minaprotocol/mina-daemon:1.2.0-fe51f1e-mainnet \  
+    daemon \  
+    --block-producer-key /keys/my-wallet \  
+    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt  
     ```  
     b-) Snark Worker docker image için (tüm satırları tek seferde yapıştırın)  
-    ```
-    docker run --name mina -d \
-    -p 8302:8302 \
-    --restart always \
-    --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \
-    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \
-    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \
-    gcr.io/o1labs-192920/mina-daemon-baked:1.1.8-b10c0e3-mainnet \
-    daemon \
+    ```  
+    docker run --name mina -d \  
+    -p 8302:8302 \  
+    --restart=always \  
+    --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \  
+    --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \  
+    -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \  
+    minaprotocol/mina-daemon:1.2.0-fe51f1e-mainnet \  
+    daemon \  
     --run-snark-worker "<PUBLIC_KEY>" \
     --snark-worker-fee "0.1" \
-    --file-log-level Debug \
-    --log-level Info \
-    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt \
+    --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt \  
     --work-selection seq
     ```
 14. Oluşturulan mina container içine girin  
@@ -143,22 +139,28 @@
 `sudo rm -R .mina-config`  
 `sudo rm -R peers.txt`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
-`echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
+`echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y curl unzip mina-mainnet=1.1.8-b10c0e3`  
+`sudo apt-get install -y mina-mainnet=1.2.0-fe51f1e`  
 `wget -O ~/peers.txt https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 `mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
   ```
-  CODA_PRIVKEY_PASS="private key password"  
-  EXTRA_FLAGS=" --file-log-level Debug \  
-   --coinbase-receiver <PUBLIC-KEY> \ (rewardların toplanacağı adres)  
-   --limited-graphql-port 3095 \ (sidecar çalıştırıyorsanız gerekli)  
+  EXTRA_FLAGS=" --block-producer-key /home/erkan/keys/my-wallet \  
+   --uptime-submitter-key /home/erkan/keys/my-wallet \  
+   --uptime-url http://34.134.227.208/v1/submit \  
+   --coinbase-receiver <PUBLIC-KEY-PATH> \  (rewardların toplanacağı adres)  
+   --limited-graphql-port 3095 \  (sidecar çalıştırıyorsanız gerekli)  
    (bp ile birlikte snark da çalışacak ise aşağıdaki 3 parametre eklenmeli)  
    --run-snark-worker <PUBLIC-KEY> \ (snark ödüllerinin toplanacağı adres)  
    --snark-worker-fee 0.0009 \ (snark fee)  
    --work-selection seq" (snark aktif)  
+  UPTIME_PRIVKEY_PASS="<PRIVATE-KEY-PASSWORD>"  
+  MINA_PRIVKEY_PASS="<PRIVATE-KEY-PASSWORD>"  
+  CODA_PRIVKEY_PASS="<PRIVATE-KEY-PASSWORD>"  
+  LOG_LEVEL=Info  
+  FILE_LOG_LEVEL=Debug  
    ```  
 `source .mina-env`  
 `systemctl --user enable mina`  
@@ -171,9 +173,9 @@ after bootstrap `Ctrl-C`
 # Daemon update (config ve peerları silmeden)  
 `systemctl --user stop mina`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
-`echo "deb [trusted=yes] http://packages.o1test.net release main" | sudo tee /etc/apt/sources.list.d/mina.list`  
+`echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y curl unzip mina-mainnet=1.1.8-b10c0e3`  
+`sudo apt-get install -y mina-mainnet=1.2.0-fe51f1e`  
 `source .mina-env`  
 `systemctl --user reload mina`  
 `systemctl --user status mina`  
