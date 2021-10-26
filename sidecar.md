@@ -1,6 +1,6 @@
 # Install  
 
-1 `sudo apt-get install -y mina-bp-stats-sidecar=1.2.0-fe51f1e-mainnet`  
+1 `sudo apt-get install -y mina-bp-stats-sidecar=1.2.0-fe51f1e`  
 2 `apt-get update && apt-get install python3 python3-certifi`  
 3 `sudo nano /etc/mina-sidecar.json`  
 
@@ -12,6 +12,7 @@
 ```  
  4 `sudo nano /etc/systemd/system/mina-bp-stats-sidecar.service`  
 ``` 
+(under [Service])  
 Restart=always
 RestartSec=5
 ```  
