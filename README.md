@@ -147,8 +147,8 @@
 after bootstrap `Ctrl-C`  
 `sudo nano .mina-env`  
   ```
-  EXTRA_FLAGS=" --block-producer-key /home/erkan/keys/my-wallet \  
-   --uptime-submitter-key /home/erkan/keys/my-wallet \  
+  EXTRA_FLAGS=" --block-producer-key /home/<USER-NAME>/keys/my-wallet \  
+   --uptime-submitter-key /home/<USER-NAME>/keys/my-wallet \  
    --uptime-url http://34.134.227.208/v1/submit \  
    --coinbase-receiver <PUBLIC-KEY-PATH> \  (rewardların toplanacağı adres)  
    --limited-graphql-port 3095 \  (sidecar çalıştırıyorsanız gerekli)  
