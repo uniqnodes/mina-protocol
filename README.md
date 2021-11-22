@@ -40,7 +40,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \  
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \  
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \  
-    minaprotocol/mina-daemon:1.2.0-fe51f1e-mainnet \  
+    minaprotocol/mina-daemon:1.2.2-feee67c-mainnet \  
     daemon \  
     --block-producer-key /keys/my-wallet \  
     --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt  
@@ -53,7 +53,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \  
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \  
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \  
-    minaprotocol/mina-daemon:1.2.0-fe51f1e-mainnet \  
+    minaprotocol/mina-daemon:1.2.2-feee67c-mainnet \  
     daemon \  
     --run-snark-worker "<PUBLIC_KEY>" \
     --snark-worker-fee "0.1" \
@@ -141,7 +141,7 @@
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y mina-mainnet=1.2.0-fe51f1e`  
+`sudo apt-get install -y mina-mainnet=1.2.2-feee67c`  
 `wget -O ~/peers.txt https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 `mina daemon --generate-genesis-proof true --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt`  
 after bootstrap `Ctrl-C`  
@@ -175,7 +175,7 @@ after bootstrap `Ctrl-C`
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
 `echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
-`sudo apt-get install -y mina-mainnet=1.2.0-fe51f1e`  
+`sudo apt-get install -y mina-mainnet=1.2.2-feee67c`  
 `source .mina-env`  
 `systemctl --user reload mina`  
 `systemctl --user status mina`  
