@@ -177,6 +177,7 @@ after bootstrap `Ctrl-C`
 `sudo apt-get update`  
 `sudo apt-get install -y mina-mainnet=1.2.2-feee67c`  
 `source .mina-env`  
+`systemctl --user restart mina`  
 `systemctl --user reload mina`  
 `systemctl --user status mina`  
 `journalctl --user-unit mina -f`  
