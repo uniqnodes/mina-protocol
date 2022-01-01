@@ -23,6 +23,8 @@
 11. keys dizini ve my-wallet dosyasını yetkilendirin  
     `sudo chmod 700 ~/keys`  
     `sudo chmod 600 ~/keys/my-wallet`  
+    `sudo chown -R <USER-NAME>:<USER-NAME> ~/keys`  
+    `sudo chown -R <USER-NAME>:<USER-NAME> ~/keys/my-wallet`  
 12. Docker kurun ve yetkilendirin  
     `sudo apt-get install curl apt-transport-https ca-certificates software-properties-common`  
     `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`  
@@ -80,6 +82,8 @@
 23. keys dizini ve my-wallet dosyasını yetkilendirin  
     `chmod 700 ~/keys`  
     `chmod 600 ~/keys/my-wallet`  
+    `chown -R <USER-NAME>:<USER-NAME> ~/keys`  
+    `chown -R <USER-NAME>:<USER-NAME> ~/keys/my-wallet`  
 24. Oluşturulan anahtar çiftini coda accounts içine import edin  
     `mina accounts import -privkey-path ~/keys/my-wallet`  
 25. Sık kullanılan bilgileri değişkenlere atayacağınız .mina-env dosyasını oluşturun  
