@@ -26,13 +26,8 @@
     `sudo chown -R <USER-NAME>:<USER-NAME> ~/keys`  
     `sudo chown -R <USER-NAME>:<USER-NAME> ~/keys/my-wallet`  
 12. Docker kurun ve yetkilendirin  
-    `sudo apt-get install curl apt-transport-https ca-certificates software-properties-common`  
-    `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`  
-    `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`  
-    `sudo apt update`  
-    `apt-cache policy docker-ce`  
-    `sudo apt install docker-ce`  
-    `sudo chmod 666 /var/run/docker.sock` 
+    `curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh`  
+    `sudo chmod 666 /var/run/docker.sock`  
 13. Yapmak istediğiniz işleme göre bunlardan birini seçin (Block Producer ya da Snark Worker)  
     a-) Block Producer docker image için (tüm satırları tek seferde yapıştırın)  
     ```
