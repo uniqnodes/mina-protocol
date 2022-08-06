@@ -176,8 +176,8 @@ after bootstrap `Ctrl-C`
 `sudo apt-get update`  
 `sudo apt-get install -y mina-mainnet=1.3.1.1-f361ba1`  
 `source .mina-env`  
+`systemctl --user daemon-reload`  
 `systemctl --user restart mina`  
-`systemctl --user reload mina`  
 `systemctl --user status mina`  
 `journalctl --user-unit mina -f`  
 `mina client status`  
