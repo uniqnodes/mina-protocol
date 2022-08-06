@@ -37,7 +37,7 @@
     --mount "type=bind,source=`pwd`/keys,dst=/keys,readonly" \  
     --mount "type=bind,source=`pwd`/.mina-config,dst=/root/.mina-config" \  
     -e CODA_PRIVKEY_PASS="<PRIVKEY_PASS>" \  
-    minaprotocol/mina-daemon:1.3.1-3e3abec-bionic-mainnet \  
+    minaprotocol/mina-daemon:1.3.1.1-f361ba1-bionic-mainnet \  
     daemon \  
     --block-producer-key /keys/my-wallet \  
     --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainnet_seeds.txt  
