@@ -138,6 +138,7 @@
 `sudo rm -R .mina-config`  
 `sudo rm -R peers.txt`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
+`sudo rm /etc/apt/sources.list.d/mina*.list`  
 `echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
 `sudo apt-get install -y mina-mainnet=1.3.1.2-25388a0`  
@@ -172,6 +173,7 @@ after bootstrap `Ctrl-C`
 # Daemon update (config ve peerları silmeden)  
 `systemctl --user stop mina`  
 `sudo apt-get remove -y mina-testnet-postake-medium-curves`  
+`sudo rm /etc/apt/sources.list.d/mina*.list`  
 `echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list`  
 `sudo apt-get update`  
 `sudo apt-get install -y mina-mainnet=1.3.1.2-25388a0`  
